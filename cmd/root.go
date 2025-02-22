@@ -26,19 +26,13 @@ import (
 
 var cfgFile string
 
-// rootCmd represents the base command when called without any subcommands
+// $ af
 var rootCmd = &cobra.Command{
-	Use:   "artifactsmmo-go",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	Use:   "af",
+	Short: "A Go client for the Artifacts MMORPG",
+	Long: `A Go client and command-line interface for playing and interact with
+Artifacts, an API-based MMORPG.`,
+	Run: func(cmd *cobra.Command, args []string) {},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -56,12 +50,7 @@ func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
-
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.artifactsmmo-go.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.config/artifacts/token.yaml")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -74,16 +63,25 @@ func initConfig() {
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
+		conf := home + "/.config/artifacts/"
+
 		// Search config in home directory with name ".artifactsmmo-go" (without extension).
-		viper.AddConfigPath(home)
-		viper.SetConfigType("yaml")
-		viper.SetConfigName(".artifactsmmo-go")
+		viper.AddConfigPath(conf)
+		viper.SetConfigName("token")
 	}
 
+	viper.SetEnvPrefix("artifacts")
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
-		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
+		// TODO
+	} else {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			fmt.Println("No config, but it's chill as long as you define ARTIFACTS_TOKEN in your env")
+		} else {
+			fmt.Println("failed loading config")
+			os.Exit(1)
+		}
 	}
 }
