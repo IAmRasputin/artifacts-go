@@ -1,4 +1,4 @@
-module github.com/IAmRasputin/artifactsmmo-go
+module github.com/IAmRasputin/artifacts-go
 
 go 1.23.6
 

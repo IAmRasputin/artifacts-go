@@ -16,7 +16,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 package main
 
-import "github.com/IAmRasputin/artifactsmmo-go/cmd"
+import "github.com/IAmRasputin/artifacts-go/cmd"
 
 func main() {
 	cmd.Execute()
