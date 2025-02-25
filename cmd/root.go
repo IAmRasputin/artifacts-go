@@ -17,14 +17,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
-	"fmt"
 	"os"
 
+	"github.com/IAmRasputin/artifacts-go/internal/config"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
-
-var cfgFile string
 
 // $ af
 var rootCmd = &cobra.Command{
@@ -45,43 +42,10 @@ func Execute() {
 }
 
 func init() {
-	cobra.OnInitialize(initConfig)
+	cobra.OnInitialize(config.InitConfig)
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.config/artifacts/token.yaml")
-}
-
-// initConfig reads in config file and ENV variables if set.
-func initConfig() {
-	if cfgFile != "" {
-		// Use config file from the flag.
-		viper.SetConfigFile(cfgFile)
-	} else {
-		// Find home directory.
-		home, err := os.UserHomeDir()
-		cobra.CheckErr(err)
-
-		conf := home + "/.config/artifacts/"
-
-		// Search config in home directory with name ".artifactsmmo-go" (without extension).
-		viper.AddConfigPath(conf)
-		viper.SetConfigName("token")
-	}
-
-	viper.SetEnvPrefix("artifacts")
-	viper.AutomaticEnv() // read in environment variables that match
-
-	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		// TODO
-	} else {
-		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			fmt.Println("No config, but it's chill as long as you define ARTIFACTS_TOKEN in your env")
-		} else {
-			fmt.Println("failed loading config")
-			os.Exit(1)
-		}
-	}
+	rootCmd.PersistentFlags().StringVar(&config.CfgFile, "config", "", "config file (default is $HOME/.config/artifacts/token.yaml")
 }
