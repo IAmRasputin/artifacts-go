@@ -9,10 +9,14 @@ import (
 )
 
 var CfgFile string
-var Token string
+var token string
+
+type TokenGetter interface {
+	GetToken() (string, error)
+}
 
 // initConfig reads in config file and ENV variables if set.
-func InitConfig() {
+func InitConfig() error {
 	if CfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(CfgFile)
@@ -33,18 +37,36 @@ func InitConfig() {
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
-		Token = viper.GetString("token")
+		token = viper.GetString("token")
 	} else {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			fmt.Println("No config, but it's chill as long as you define ARTIFACTS_TOKEN in your env")
-			Token = os.Getenv("ARTIFACTS_TOKEN")
-			if Token == "" {
-				fmt.Fprintf(os.Stderr, "Failed to locate config token file or environment variable, exiting")
-				os.Exit(1)
+			token = os.Getenv("ARTIFACTS_TOKEN")
+			if token == "" {
+				return fmt.Errorf("failed to locate config token file or environment variable")
 			}
 		} else {
-			fmt.Println("failed loading config")
-			os.Exit(1)
+			return fmt.Errorf("failed to load config")
 		}
 	}
+
+	return nil
+}
+
+type DefaultTokenGetter struct{}
+
+func (d *DefaultTokenGetter) GetToken() (string, error) {
+	if token == "" {
+		err := InitConfig()
+
+		if err != nil {
+			return "", err
+		}
+	}
+
+	return token, nil
+}
+
+func NewDefaultTokenGetter() *DefaultTokenGetter {
+	return &DefaultTokenGetter{}
 }

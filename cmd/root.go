@@ -17,6 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/IAmRasputin/artifacts-go/internal/config"
@@ -41,8 +42,17 @@ func Execute() {
 	}
 }
 
+func initConfig() {
+	err := config.InitConfig()
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", err)
+		os.Exit(1)
+	}
+}
+
 func init() {
-	cobra.OnInitialize(config.InitConfig)
+	cobra.OnInitialize(initConfig)
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
