@@ -53,20 +53,26 @@ func InitConfig() error {
 	return nil
 }
 
-type DefaultTokenGetter struct{}
+type DefaultTokenGetter struct {
+	token string
+}
 
 func (d *DefaultTokenGetter) GetToken() (string, error) {
-	if token == "" {
+	if d.token == "" {
 		err := InitConfig()
 
 		if err != nil {
 			return "", err
 		}
+
+		d.token = token
 	}
 
-	return token, nil
+	return d.token, nil
 }
 
 func NewDefaultTokenGetter() *DefaultTokenGetter {
-	return &DefaultTokenGetter{}
+	return &DefaultTokenGetter{
+		token: token,
+	}
 }

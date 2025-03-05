@@ -21,6 +21,7 @@ import (
 	"os"
 
 	"github.com/IAmRasputin/artifacts-go/internal/config"
+	"github.com/IAmRasputin/artifacts-go/pkg"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +31,9 @@ var rootCmd = &cobra.Command{
 	Short: "A Go client for the Artifacts MMORPG",
 	Long: `A Go client and command-line interface for playing and interact with
 Artifacts, an API-based MMORPG.`,
-	Run: func(cmd *cobra.Command, args []string) {},
+	Run: func(cmd *cobra.Command, args []string) {
+		pkg.ClientTest()
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

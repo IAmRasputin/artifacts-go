@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.0
 info:
   title: Artifacts API
   description: '
@@ -2810,7 +2810,7 @@ components:
         target:
           anyOf:
             - type: string
-            - type: 'null'
+            - type: null
           title: Target
           description: Target of the achievement.
         total:
@@ -2829,7 +2829,7 @@ components:
           anyOf:
             - type: string
               format: date-time
-            - type: 'null'
+            - type: null
           title: Completed At
           description: Completed at.
       type: object
@@ -2981,7 +2981,7 @@ components:
         target:
           anyOf:
             - type: string
-            - type: 'null'
+            - type: null
           title: Target
           description: Target of the achievement.
         total:
@@ -3154,7 +3154,7 @@ components:
         quantity:
           anyOf:
             - type: integer
-            - type: 'null'
+            - type: null
           title: Quantity
           description: Quantity of the condition (if any).
       type: object
@@ -3179,7 +3179,7 @@ components:
         season:
           anyOf:
             - type: integer
-            - type: 'null'
+            - type: null
           title: Season
           description: Season of the badge.
         description:
@@ -4127,25 +4127,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4165,25 +4165,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4203,25 +4203,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4241,25 +4241,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4279,25 +4279,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4317,25 +4317,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4355,25 +4355,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4393,25 +4393,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4431,25 +4431,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4469,25 +4469,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4507,25 +4507,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4545,25 +4545,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4583,25 +4583,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4621,25 +4621,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4659,25 +4659,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4697,25 +4697,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4735,25 +4735,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4773,25 +4773,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4811,25 +4811,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -4849,25 +4849,25 @@ components:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Total
         page:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Page
         size:
           anyOf:
             - type: integer
               minimum: 1.0
-            - type: 'null'
+            - type: null
           title: Size
         pages:
           anyOf:
             - type: integer
               minimum: 0.0
-            - type: 'null'
+            - type: null
           title: Pages
       type: object
       required:
@@ -5601,7 +5601,7 @@ components:
         craft:
           anyOf:
             - $ref: '#/components/schemas/CraftSchema'
-            - type: 'null'
+            - type: null
           description: Craft information. If applicable.
         tradeable:
           type: boolean
@@ -5688,7 +5688,7 @@ components:
           anyOf:
             - type: string
               format: date-time
-            - type: 'null'
+            - type: null
           title: Cooldown Expiration
           description: Datetime of cooldown expiration.
         created_at:
@@ -5796,7 +5796,7 @@ components:
         content:
           anyOf:
             - $ref: '#/components/schemas/MapContentSchema'
-            - type: 'null'
+            - type: null
           description: Content of the map.
       type: object
       required:
@@ -5992,13 +5992,13 @@ components:
         buy_price:
           anyOf:
             - type: integer
-            - type: 'null'
+            - type: null
           title: Buy Price
           description: Price to buy the item.
         sell_price:
           anyOf:
             - type: integer
-            - type: 'null'
+            - type: null
           title: Sell Price
           description: Price to sell the item.
       type: object
@@ -6503,7 +6503,7 @@ components:
         skill:
           anyOf:
             - type: string
-            - type: 'null'
+            - type: null
           title: Skill
           description: Skill required to complete the task.
         rewards:

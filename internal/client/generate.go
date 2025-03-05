@@ -1,3 +1,3 @@
 package client
 
-//go:generate go run github.com/ogen-go/ogen/cmd/ogen --target=. --package client --clean ../../spec.yaml
+//go:generate go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen --config=../../conf.yaml ../../spec.yaml
