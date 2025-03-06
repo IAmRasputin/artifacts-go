@@ -21,7 +21,6 @@ import (
 	"os"
 
 	"github.com/IAmRasputin/artifacts-go/internal/config"
-	"github.com/IAmRasputin/artifacts-go/pkg"
 	"github.com/spf13/cobra"
 )
 
@@ -32,7 +31,7 @@ var rootCmd = &cobra.Command{
 	Long: `A Go client and command-line interface for playing and interact with
 Artifacts, an API-based MMORPG.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		pkg.ClientTest()
+		fmt.Println("go away, the cli isn't implemented yet")
 	},
 }
 
