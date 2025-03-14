@@ -1,5 +1,3 @@
 af
 artifacts-go
-spec.json
-internal/client/
-!internal/client/generate.go
+client.gen.go
