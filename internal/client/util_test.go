@@ -23,13 +23,17 @@ func (t *TestTokenGetter) GetToken() (string, error) {
 func TestIncludeAuth(t *testing.T) {
 	ctx := context.TODO()
 
-	req := http.Request{}
+	req, err := http.NewRequest("GET", "www.test.com", nil)
 	tokenGetter := &TestTokenGetter{
 		token: "test_token",
 		err:   nil,
 	}
 
-	err := IncludeAuth(ctx, &req, tokenGetter)
+	if err != nil {
+		t.Fatalf("%#v", err)
+	}
+
+	err = IncludeAuth(ctx, req, tokenGetter)
 
 	if err != nil {
 		t.Fatal("?")
