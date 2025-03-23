@@ -13,10 +13,14 @@ type GameStatusClient interface {
 
 type Client struct {
 	ctx            context.Context
-	internalClient *client.Client
+	internalClient GameStatusGetter
 }
 
-func NewGameStatusClient(artifactsClient *client.Client) GameStatusClient {
+type GameStatusGetter interface {
+	GetStatusGet(context.Context, ...client.RequestEditorFn) (*http.Response, error)
+}
+
+func NewGameStatusClient(artifactsClient GameStatusGetter) GameStatusClient {
 	return &Client{
 		ctx:            context.Background(),
 		internalClient: artifactsClient,
@@ -24,7 +28,7 @@ func NewGameStatusClient(artifactsClient *client.Client) GameStatusClient {
 }
 
 func (c *Client) GetGameServerStatus() (*http.Response, error) {
-	resp, err := c.internalClient.GetStatusGet(c.ctx, client.IncludeAuth)
+	resp, err := c.internalClient.GetStatusGet(c.ctx)
 
 	if err != nil {
 		return nil, err

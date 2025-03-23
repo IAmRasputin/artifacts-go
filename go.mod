@@ -1,6 +1,6 @@
 module github.com/IAmRasputin/artifacts-go
 
-go 1.23.6
+go 1.24.1
 
 require (
 	github.com/oapi-codegen/oapi-codegen/v2 v2.4.1
@@ -48,3 +48,5 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen

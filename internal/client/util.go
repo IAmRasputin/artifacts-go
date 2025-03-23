@@ -10,8 +10,13 @@ import (
 
 const BaseURL string = "https://api.artifactsmmo.com"
 
-func IncludeAuth(ctx context.Context, req *http.Request) error {
-	tokenGetter := config.NewDefaultTokenGetter()
+func DefaultAuth(ctx context.Context, req *http.Request) error {
+	defaultToken := config.NewDefaultTokenGetter()
+
+	return IncludeAuth(ctx, req, defaultToken)
+}
+
+func IncludeAuth(ctx context.Context, req *http.Request, tokenGetter config.TokenGetter) error {
 	tok, err := tokenGetter.GetToken()
 
 	if err != nil {

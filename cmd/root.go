@@ -31,7 +31,7 @@ var rootCmd = &cobra.Command{
 	Long: `A Go client and command-line interface for playing and interact with
 Artifacts, an API-based MMORPG.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("go away, the cli isn't implemented yet")
+		cmd.Usage()
 	},
 }
 
@@ -59,5 +59,5 @@ func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
-	rootCmd.PersistentFlags().StringVar(&config.CfgFile, "config", "", "config file (default is $HOME/.config/artifacts/token.yaml")
+	rootCmd.PersistentFlags().StringVar(&config.CfgFile, "config", "", "config file (default is $HOME/.config/artifacts/token.yaml)")
 }
