@@ -2,13 +2,12 @@ package status
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/IAmRasputin/artifacts-go/internal/client"
 )
 
 type GameStatusClient interface {
-	GetGameServerStatus() (*http.Response, error)
+	GetGameServerStatus() (*client.GetStatusGetResponse, error)
 }
 
 type Client struct {
@@ -17,7 +16,7 @@ type Client struct {
 }
 
 type GameStatusGetter interface {
-	GetStatusGet(context.Context, ...client.RequestEditorFn) (*http.Response, error)
+	GetStatusGetWithResponse(context.Context, ...client.RequestEditorFn) (*client.GetStatusGetResponse, error)
 }
 
 func NewGameStatusClient(artifactsClient GameStatusGetter) GameStatusClient {
@@ -27,8 +26,8 @@ func NewGameStatusClient(artifactsClient GameStatusGetter) GameStatusClient {
 	}
 }
 
-func (c *Client) GetGameServerStatus() (*http.Response, error) {
-	resp, err := c.internalClient.GetStatusGet(c.ctx)
+func (c *Client) GetGameServerStatus() (*client.GetStatusGetResponse, error) {
+	resp, err := c.internalClient.GetStatusGetWithResponse(c.ctx)
 
 	if err != nil {
 		return nil, err

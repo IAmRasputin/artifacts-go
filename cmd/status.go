@@ -9,6 +9,7 @@ import (
 
 	"github.com/IAmRasputin/artifacts-go/internal/client"
 	"github.com/IAmRasputin/artifacts-go/pkg/status"
+	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +18,7 @@ var statusCmd = &cobra.Command{
 	Use:   "status",
 	Short: "Gets the status of the game server",
 	Run: func(cmd *cobra.Command, args []string) {
-		artifactsClient, err := client.NewClient(client.BaseURL)
+		artifactsClient, err := client.NewClientWithResponses(client.BaseURL)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to create base game client: %s", err)
 			os.Exit(1)
@@ -29,7 +30,11 @@ var statusCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		fmt.Printf("%#v\n", resp)
+		if resp.JSON200.Data.Status == "online" {
+			fmt.Printf("Game status: %s\n", color.GreenString("ONLINE"))
+		} else {
+			fmt.Printf("Game status: %s\n", color.RedString("ONLINE"))
+		}
 	},
 }
 
