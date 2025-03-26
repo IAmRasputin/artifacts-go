@@ -6,6 +6,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/IAmRasputin/artifacts-go/internal/client"
 	"github.com/IAmRasputin/artifacts-go/pkg/status"
@@ -30,11 +31,20 @@ var statusCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		if resp.JSON200.Data.Status == "online" {
-			fmt.Printf("Game status: %s\n", color.GreenString("ONLINE"))
-		} else {
-			fmt.Printf("Game status: %s\n", color.RedString("ONLINE"))
+		statusInfo := resp.JSON200.Data
+
+		hlStatus := func(serverStatus string) string {
+			switch serverStatus {
+			case "online":
+				return color.GreenString(strings.ToUpper(serverStatus))
+			default:
+				return color.RedString(strings.ToUpper(serverStatus))
+			}
 		}
+
+		fmt.Printf("Artifacts MMO version %s\n", statusInfo.Version)
+		fmt.Printf("Server status: %s\n", hlStatus(statusInfo.Status))
+		fmt.Printf("%d players online\n", statusInfo.CharactersOnline)
 	},
 }
 
