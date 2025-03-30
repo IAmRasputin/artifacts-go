@@ -2,37 +2,47 @@ package status
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/IAmRasputin/artifacts-go/internal/client"
 )
 
+type GameStatus = client.StatusSchema
+
 type GameStatusClient interface {
-	GetGameServerStatus() (*http.Response, error)
+	GetGameServerStatus() (*GameStatus, error)
 }
 
-type Client struct {
+type artifactsClient struct {
 	ctx            context.Context
-	internalClient GameStatusGetter
+	internalClient *client.ClientWithResponses
 }
 
-type GameStatusGetter interface {
-	GetStatusGet(context.Context, ...client.RequestEditorFn) (*http.Response, error)
-}
-
-func NewGameStatusClient(artifactsClient GameStatusGetter) GameStatusClient {
-	return &Client{
+func NewGameStatusClient(afClient *client.ClientWithResponses) (GameStatusClient, error) {
+	return &artifactsClient{
 		ctx:            context.Background(),
-		internalClient: artifactsClient,
-	}
+		internalClient: afClient,
+	}, nil
 }
 
-func (c *Client) GetGameServerStatus() (*http.Response, error) {
-	resp, err := c.internalClient.GetStatusGet(c.ctx)
+func NewDefaultGameStatusClient() (GameStatusClient, error) {
+	afClient, err := client.NewClientWithResponses(client.BaseURL)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return resp, nil
+	return &artifactsClient{
+		ctx:            context.Background(),
+		internalClient: afClient,
+	}, nil
+}
+
+func (c *artifactsClient) GetGameServerStatus() (*GameStatus, error) {
+	resp, err := c.internalClient.GetStatusGetWithResponse(c.ctx, client.DefaultAuth)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &resp.JSON200.Data, nil
 }
