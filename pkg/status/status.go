@@ -28,6 +28,16 @@ func NewGameStatusClient(afClient GameStatusGetter) GameStatusClient {
 	}
 }
 
+func NewDefaultGameStatusClient() (GameStatusClient, error) {
+	artifactsClient, err := client.NewClientWithResponses(client.BaseURL)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return NewGameStatusClient(artifactsClient), nil
+}
+
 func (c *artifactsClient) GetGameServerStatus() (*GameStatus, error) {
 	resp, err := c.internalClient.GetStatusGetWithResponse(c.ctx)
 

@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/IAmRasputin/artifacts-go/internal/client"
 	"github.com/IAmRasputin/artifacts-go/pkg/characters"
 	"github.com/spf13/cobra"
 )
@@ -23,14 +22,7 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		artifactsClient, err := client.NewClientWithResponses(client.BaseURL)
-
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "failed to create artifacts client: %v", err)
-			os.Exit(1)
-		}
-
-		charactersClient, err := characters.NewCharacterClient(*artifactsClient)
+		charactersClient, err := characters.NewDefaultCharacterClient()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "failed to create internal SDK client: %v", err)
 			os.Exit(1)
@@ -42,7 +34,7 @@ to quickly create a Cobra application.`,
 			os.Exit(1)
 		}
 
-		fmt.Printf("%#v\n", chars)
+		fmt.Printf("%v\n", chars)
 	},
 }
 

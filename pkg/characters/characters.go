@@ -16,14 +16,24 @@ type CharacterClient interface {
 
 type artifactsClient struct {
 	ctx            context.Context
-	internalClient client.ClientWithResponses
+	internalClient *client.ClientWithResponses
 }
 
-func NewCharacterClient(afClient client.ClientWithResponses) (CharacterClient, error) {
+func NewCharacterClient(afClient *client.ClientWithResponses) CharacterClient {
 	return &artifactsClient{
 		ctx:            context.Background(),
 		internalClient: afClient,
-	}, nil
+	}
+}
+
+func NewDefaultCharacterClient() (CharacterClient, error) {
+	afClient, err := client.NewClientWithResponses(client.BaseURL)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return NewCharacterClient(afClient), nil
 }
 
 func (a *artifactsClient) GetCharacters() ([]Character, error) {

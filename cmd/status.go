@@ -8,7 +8,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/IAmRasputin/artifacts-go/internal/client"
 	"github.com/IAmRasputin/artifacts-go/pkg/status"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -19,19 +18,14 @@ var statusCmd = &cobra.Command{
 	Use:   "status",
 	Short: "Gets the status of the game server",
 	Run: func(cmd *cobra.Command, args []string) {
-		artifactsClient, err := client.NewClientWithResponses(client.BaseURL)
+		statusClient, err := status.NewDefaultGameStatusClient()
+
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to create base game client: %s", err)
+			fmt.Fprintf(os.Stderr, "failed to create sdk client: %v", err.Error())
 			os.Exit(1)
 		}
 
-		resp, err := status.NewGameStatusClient(artifactsClient).GetGameServerStatus()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to get game server status: %s", err)
-			os.Exit(1)
-		}
-
-		statusInfo := resp.JSON200.Data
+		statusInfo, err := statusClient.GetGameServerStatus()
 
 		hlStatus := func(serverStatus string) string {
 			switch serverStatus {
