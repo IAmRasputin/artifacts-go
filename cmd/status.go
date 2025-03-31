@@ -17,7 +17,7 @@ var statusCmd = &cobra.Command{
 	Use:   "status",
 	Short: "Gets the status of the game server",
 	Run: func(cmd *cobra.Command, args []string) {
-		artifactsClient, err := client.NewClient(client.BaseURL)
+		artifactsClient, err := client.NewClientWithResponses(client.BaseURL)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to create base game client: %s", err)
 			os.Exit(1)

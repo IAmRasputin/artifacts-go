@@ -12,33 +12,24 @@ type GameStatusClient interface {
 	GetGameServerStatus() (*GameStatus, error)
 }
 
+type GameStatusGetter interface {
+	GetStatusGetWithResponse(context.Context, ...client.RequestEditorFn) (*client.GetStatusGetResponse, error)
+}
+
 type artifactsClient struct {
 	ctx            context.Context
-	internalClient *client.ClientWithResponses
+	internalClient GameStatusGetter
 }
 
-func NewGameStatusClient(afClient *client.ClientWithResponses) (GameStatusClient, error) {
+func NewGameStatusClient(afClient GameStatusGetter) GameStatusClient {
 	return &artifactsClient{
 		ctx:            context.Background(),
 		internalClient: afClient,
-	}, nil
-}
-
-func NewDefaultGameStatusClient() (GameStatusClient, error) {
-	afClient, err := client.NewClientWithResponses(client.BaseURL)
-
-	if err != nil {
-		return nil, err
 	}
-
-	return &artifactsClient{
-		ctx:            context.Background(),
-		internalClient: afClient,
-	}, nil
 }
 
 func (c *artifactsClient) GetGameServerStatus() (*GameStatus, error) {
-	resp, err := c.internalClient.GetStatusGetWithResponse(c.ctx, client.DefaultAuth)
+	resp, err := c.internalClient.GetStatusGetWithResponse(c.ctx)
 
 	if err != nil {
 		return nil, err
