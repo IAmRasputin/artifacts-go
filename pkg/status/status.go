@@ -6,32 +6,34 @@ import (
 	"github.com/IAmRasputin/artifacts-go/internal/client"
 )
 
-type GameStatusClient interface {
-	GetGameServerStatus() (*client.GetStatusGetResponse, error)
-}
+type GameStatus = client.StatusSchema
 
-type Client struct {
-	ctx            context.Context
-	internalClient GameStatusGetter
+type GameStatusClient interface {
+	GetGameServerStatus() (*GameStatus, error)
 }
 
 type GameStatusGetter interface {
 	GetStatusGetWithResponse(context.Context, ...client.RequestEditorFn) (*client.GetStatusGetResponse, error)
 }
 
-func NewGameStatusClient(artifactsClient GameStatusGetter) GameStatusClient {
-	return &Client{
+type artifactsClient struct {
+	ctx            context.Context
+	internalClient GameStatusGetter
+}
+
+func NewGameStatusClient(afClient GameStatusGetter) GameStatusClient {
+	return &artifactsClient{
 		ctx:            context.Background(),
-		internalClient: artifactsClient,
+		internalClient: afClient,
 	}
 }
 
-func (c *Client) GetGameServerStatus() (*client.GetStatusGetResponse, error) {
+func (c *artifactsClient) GetGameServerStatus() (*GameStatus, error) {
 	resp, err := c.internalClient.GetStatusGetWithResponse(c.ctx)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return resp, nil
+	return &resp.JSON200.Data, nil
 }
