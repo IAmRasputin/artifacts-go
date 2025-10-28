@@ -21,11 +21,15 @@ var statusCmd = &cobra.Command{
 		statusClient, err := status.NewDefaultGameStatusClient()
 
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "failed to create sdk client: %v", err.Error())
+			fmt.Fprintf(os.Stderr, "failed to create sdk client: %v", err)
 			os.Exit(1)
 		}
 
 		statusInfo, err := statusClient.GetGameServerStatus()
+
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "failed to get game status: %v", err)
+		}
 
 		hlStatus := func(serverStatus string) string {
 			switch serverStatus {
